@@ -1,12 +1,25 @@
 import background from "/header.png";
 import logo from "/logo.svg";
 import searchIcon from "/icon-search.svg";
-import { useContext } from "react";
-import Context from "../../context/sortContext";
+import { useContext, useEffect, useState } from "react";
+import Context from "../../context/Context";
 
 export default function Header() {
-  const { activeSortOption, setActiveSortOption } = useContext(Context);
+  const { activeSortOption, setActiveSortOption, setSearchQuery } = useContext(Context);
+  const [inputValue, setInputValue] = useState("");
   const sortOptions = ["أبجدي", "عدد السور", "الرواية"];
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setSearchQuery(inputValue);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [inputValue, setSearchQuery]);
+
+  function onChangeHandler(e: React.ChangeEvent<HTMLInputElement>) {
+    setInputValue(e.target.value);
+  }
 
   return (
     <header dir="rtl">
@@ -18,7 +31,12 @@ export default function Header() {
       <img className="w-[64px] mx-auto my-[24px]" src={logo} alt="Logo" />
       <div className="flex justify-center items-center">
         <div className="basis-[500px] h-[48px] mx-[16px] px-[16px] rounded-[10px] bg-white items-center flex gap-[8px]">
-          <input className="w-full h-[48px] block mx-auto rounded-[10px] outline-none font-['Amiri']" type="text" />
+          <input
+            value={inputValue}
+            onChange={onChangeHandler}
+            className="w-full h-[48px] block mx-auto rounded-[10px] outline-none font-['Amiri']"
+            type="text"
+          />
           <img src={searchIcon} alt="Search Icon" />
         </div>
       </div>
