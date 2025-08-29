@@ -44,7 +44,7 @@ export default function RecitersList() {
       {sortedReciters.map((reciter) => {
         return (
           <Link to={`/reciter/${reciter.id}`} key={reciter.id} state={{ reciter }}>
-            <div className="cursor-pointer p-[16px] bg-white rounded-[12px] flex flex-col items-center gap-[16px] shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.35)]">
+            <div className="h-full cursor-pointer p-[16px] bg-white rounded-[12px] flex flex-col items-center justify-center gap-[16px] shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.35)]">
               <p className="font-['Amiri']">{reciter.name}</p>
               <div>
                 <div className="flex items-center gap-4 px-[16px]">
