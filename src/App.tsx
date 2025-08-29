@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./App.css";
 import Header from "./components/Header/Header";
 import RecitersList from "./components/RecitersList/RecitersList";
 import Context from "./context/Context";
@@ -12,7 +11,7 @@ export default function App() {
   return (
     <Context.Provider value={{ activeSortOption, setActiveSortOption, searchQuery, setSearchQuery }}>
       <div className="min-h-[calc(100vh-94px)]">
-        <Header />
+        <Header withSorting={true} />
         <RecitersList />
       </div>
       <Footer />

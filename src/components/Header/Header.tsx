@@ -4,7 +4,7 @@ import searchIcon from "/icon-search.svg";
 import { useContext, useEffect, useState } from "react";
 import Context from "../../context/Context";
 
-export default function Header() {
+export default function Header(props: { withSorting: boolean }) {
   const { activeSortOption, setActiveSortOption, setSearchQuery } = useContext(Context);
   const [inputValue, setInputValue] = useState("");
   const sortOptions = ["أبجدي", "عدد السور", "الرواية"];
@@ -40,23 +40,25 @@ export default function Header() {
           <img src={searchIcon} alt="Search Icon" />
         </div>
       </div>
-      <div className="flex justify-center items-center gap-[8px] my-[24px]">
-        <p className="text-white font-bold text-[18px]">ترتيب حسب :</p>
-        <div className="flex justify-center items-center gap-[8px]">
-          {sortOptions.map((option, index) => {
-            return (
-              <span
-                key={index}
-                className={`block px-[18px] py-[12px] rounded-[40px] text-[#624bc3] cursor-pointer outline-none ease-in-out duration-300 ${activeSortOption === option ? "bg-[#32e6c5]" : "bg-[#85e6c5]"}`}
-                onClick={() => setActiveSortOption(option)}
-                tabIndex={0}
-              >
-                {option}
-              </span>
-            );
-          })}
+      {props.withSorting && (
+        <div className="flex justify-center items-center gap-[8px] my-[24px]">
+          <p className="text-white font-bold text-[18px] shrink-0">ترتيب حسب :</p>
+          <div className="flex justify-center items-center gap-[8px]">
+            {sortOptions.map((option, index) => {
+              return (
+                <span
+                  key={index}
+                  className={`text-center block px-[18px] py-[12px] rounded-[40px] text-[#624bc3] cursor-pointer shrink-0 outline-none ease-in-out duration-300 ${activeSortOption === option ? "bg-[#32e6c5]" : "bg-[#85e6c5]"}`}
+                  onClick={() => setActiveSortOption(option)}
+                  tabIndex={0}
+                >
+                  {option}
+                </span>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      )}
     </header>
   );
 }
