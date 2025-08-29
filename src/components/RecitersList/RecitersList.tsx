@@ -1,5 +1,6 @@
 import { useContext, useEffect, useMemo, useState } from "react";
 import heartIcon from "/icon-heart.svg";
+import filledHeartIcon from "/icon-heart-filled.svg";
 import kaabaIcon from "/icon-kaaba.svg";
 import bookIcon from "/icon-book.svg";
 import Context from "../../context/Context";
@@ -10,12 +11,20 @@ export default function RecitersList() {
   const [loading, setLoading] = useState(true);
   const [reciters, setReciters] = useState<Reciter[]>([]);
   const { activeSortOption, searchQuery } = useContext(Context);
+  const favorites: Record<number, string> = JSON.parse(window.localStorage.getItem("favorites") || "{}");
 
   useEffect(() => {
+    const recitersFromSessionStorage = JSON.parse(window.sessionStorage.getItem("reciters") || "[]");
+    if (recitersFromSessionStorage.length > 0) {
+      setReciters(recitersFromSessionStorage);
+      setLoading(false);
+      return;
+    }
     fetch("https://www.mp3quran.net/api/_arabic.json")
       .then((res) => res.json())
       .then((data) => {
         setReciters(data.reciters);
+        window.sessionStorage.setItem("reciters", JSON.stringify(data.reciters));
         setLoading(false);
       });
   }, []);
@@ -58,7 +67,11 @@ export default function RecitersList() {
                     <span className="text-8 text-[#828282] text-center">{reciter.rewaya}</span>
                     <img className="w-[14px]" src={kaabaIcon} alt="Kaaba Icon" />
                   </div>
-                  <img className="w-[20px]" src={heartIcon} alt="Heart Icon" />
+                  <img
+                    className="w-[20px]"
+                    src={favorites[+reciter.id] ? filledHeartIcon : heartIcon}
+                    alt="Heart Icon"
+                  />
                 </div>
               </div>
             </div>

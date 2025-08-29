@@ -16,7 +16,11 @@ export default function SurasList(props: { reciter: Reciter }) {
       {reciter.suras.split(",").map((suraNum) => {
         const sura = SURAS[+suraNum];
         return (
-          <div tabIndex={0} className="cursor-pointer p-[16px] bg-white rounded-[12px] flex justify-between items-center gap-[16px] shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.35)]">
+          <div
+            key={suraNum}
+            tabIndex={0}
+            className="cursor-pointer p-[16px] bg-white rounded-[12px] flex justify-between items-center gap-[16px] shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.35)]"
+          >
             <div className="relative">
               <img className="w-[56px]" src={starIcon} alt="Star Icon" />
               <p className="absolute top-1/2 left-1/2 -translate-1/2 font-semibold">{suraNum}</p>

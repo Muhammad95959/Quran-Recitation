@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Header from "./components/Header/Header";
 import SurasList from "./components/SurasList/SurasList";
 import type IReciter from "./interfaces/Reciter";
@@ -9,20 +9,28 @@ import Footer from "./components/Footer/Footer";
 
 export default function Reciter() {
   const [favorite, setFavorite] = useState(false);
+  const [favorites, setFavorites] = useState<Record<number, boolean>>(
+    JSON.parse(window.localStorage.getItem("favorites") || "{}"),
+  );
 
-  const state = useLocation().state;
-  const navigate = useNavigate();
+  const reciter: IReciter = useLocation().state?.reciter;
+  if (!reciter) window.location.href = "/";
 
   useEffect(() => {
-    if (!state) navigate("/");
-  }, [navigate, state]);
+    window.scrollTo(0, 0);
+  }, []);
 
-  if (!state) return null;
-
-  const reciter: IReciter = state.reciter;
+  useEffect(() => {
+    window.localStorage.setItem("favorites", JSON.stringify(favorites));
+    setFavorite(favorites[+reciter.id] || false);
+  }, [favorites, reciter]);
 
   function toggleFavorite() {
-    setFavorite((f) => !f);
+    setFavorite((prevFav) => {
+      const newFav = !prevFav;
+      setFavorites({ ...favorites, [reciter.id]: newFav });
+      return newFav;
+    });
   }
 
   return (
