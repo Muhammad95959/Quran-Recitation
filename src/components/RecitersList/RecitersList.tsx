@@ -3,14 +3,14 @@ import heartIcon from "/icon-heart.svg";
 import filledHeartIcon from "/icon-heart-filled.svg";
 import kaabaIcon from "/icon-kaaba.svg";
 import bookIcon from "/icon-book.svg";
-import Context from "../../context/Context";
+import AppContext from "../../context/AppContext";
 import { Link } from "react-router-dom";
 import type Reciter from "../../interfaces/Reciter";
 
 export default function RecitersList() {
   const [loading, setLoading] = useState(true);
   const [reciters, setReciters] = useState<Reciter[]>([]);
-  const { activeSortOption, searchQuery } = useContext(Context);
+  const { activeSortOption, searchQuery } = useContext(AppContext);
   const favorites: Record<number, string> = JSON.parse(window.localStorage.getItem("favorites") || "{}");
 
   useEffect(() => {

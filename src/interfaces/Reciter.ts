@@ -6,6 +6,5 @@ export default interface Reciter  {
   count: number;
   letter: string;
   suras: string;
-  favorite?: boolean;
 };
 

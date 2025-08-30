@@ -2,10 +2,10 @@ import background from "/header.png";
 import logo from "/logo.svg";
 import searchIcon from "/icon-search.svg";
 import { useContext, useEffect, useState } from "react";
-import Context from "../../context/Context";
+import AppContext from "../../context/AppContext";
 
 export default function Header(props: { withSorting: boolean }) {
-  const { activeSortOption, setActiveSortOption, setSearchQuery } = useContext(Context);
+  const { activeSortOption, setActiveSortOption, setSearchQuery } = useContext(AppContext);
   const [inputValue, setInputValue] = useState("");
   const sortOptions = ["أبجدي", "عدد السور", "الرواية"];
 

@@ -5,7 +5,8 @@ import type IReciter from "./interfaces/Reciter";
 import { useEffect, useState } from "react";
 import heartIcon from "/icon-heart.svg";
 import filledHeartIcon from "/icon-heart-filled.svg";
-import Footer from "./components/Footer/Footer";
+import Player from "./components/Player/Player";
+import ReciterContext from "./context/ReciterContext";
 
 export default function Reciter() {
   const [favorite, setFavorite] = useState(false);
@@ -15,6 +16,9 @@ export default function Reciter() {
 
   const reciter: IReciter = useLocation().state?.reciter;
   if (!reciter) window.location.href = "/";
+
+  const [currentSura, setCurrentSura] = useState(+reciter.suras.split(",")[0]);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -34,23 +38,27 @@ export default function Reciter() {
   }
 
   return (
-    <>
+    <ReciterContext.Provider value={{ currentSura, setCurrentSura, isPlaying, setIsPlaying }}>
       <div className="min-h-[calc(100vh-94px)]">
         <Header withSorting={false} />
-        <div dir="rtl" className="max-w-[500px] mx-auto my-[24px] flex justify-between items-center">
-          <p className="text-[40px] font-['Poppins'] font-bold text-white">{reciter.name}</p>
-          <div className="flex-1 flex justify-center">
+        <div dir="rtl" className="my-[24px] flex justify-center items-center gap-[24px]">
+          <p className="rounded-[36px] px-[24px] py-[6px] bg-white text-[24px] font-bold text-[#828282] shadow-[0_4px_12px_rgba(0,0,0,0.1)]">
+            {reciter.name}
+          </p>
+          <div
+            className="cursor-pointer bg-white rounded-[50%] p-[12px] flex items-center jusitfy-center shadow-[0_4px_12px_rgba(0,0,0,0.1)]"
+            onClick={toggleFavorite}
+          >
             <img
-              className={`w-[36px] cursor-pointer ${favorite || "invert brightness-0"}`}
+              className="w-[24px] relative top-[2px]"
               src={favorite ? filledHeartIcon : heartIcon}
               alt="Heart Icon"
-              onClick={toggleFavorite}
             />
           </div>
         </div>
         <SurasList reciter={reciter} />
       </div>
-      <Footer />
-    </>
+      <Player reciter={reciter} />
+    </ReciterContext.Provider>
   );
 }

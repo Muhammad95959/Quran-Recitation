@@ -1,17 +1,17 @@
 import { createContext } from "react";
 
-type Context = {
+type AppContextType = {
   activeSortOption: string;
   setActiveSortOption: (value: string) => void;
   searchQuery: string;
   setSearchQuery: (value: string) => void;
 };
 
-const Context = createContext<Context>({
+const AppContext = createContext<AppContextType>({
   activeSortOption: "أبجدي",
   setActiveSortOption: () => {},
   searchQuery: "",
   setSearchQuery: () => {},
 });
 
-export default Context;
+export default AppContext;

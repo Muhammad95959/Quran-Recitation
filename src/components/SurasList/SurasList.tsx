@@ -4,9 +4,12 @@ import kaabaIcon from "/icon-kaaba.svg";
 import mosqueIcon from "/icon-mosque.svg";
 import type Reciter from "../../interfaces/Reciter";
 import { SURAS } from "../../constants";
+import { useContext } from "react";
+import ReciterContext from "../../context/ReciterContext";
 
 export default function SurasList(props: { reciter: Reciter }) {
   const { reciter } = props;
+  const { setCurrentSura } = useContext(ReciterContext);
 
   return (
     <div
@@ -20,6 +23,7 @@ export default function SurasList(props: { reciter: Reciter }) {
             key={suraNum}
             tabIndex={0}
             className="cursor-pointer p-[16px] bg-white rounded-[12px] flex justify-between items-center gap-[16px] shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.35)]"
+            onClick={() => setCurrentSura(+suraNum)}
           >
             <div className="relative">
               <img className="w-[56px]" src={starIcon} alt="Star Icon" />
