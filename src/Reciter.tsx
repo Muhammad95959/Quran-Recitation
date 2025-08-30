@@ -17,6 +17,7 @@ export default function Reciter() {
   const reciter: IReciter = useLocation().state?.reciter;
   if (!reciter) window.location.href = "/";
 
+  const [suraSearchQuery, setSuraSearchQuery] = useState("");
   const [currentSura, setCurrentSura] = useState(+reciter.suras.split(",")[0]);
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -38,9 +39,11 @@ export default function Reciter() {
   }
 
   return (
-    <ReciterContext.Provider value={{ currentSura, setCurrentSura, isPlaying, setIsPlaying }}>
+    <ReciterContext.Provider
+      value={{ currentSura, setCurrentSura, isPlaying, setIsPlaying, suraSearchQuery, setSuraSearchQuery }}
+    >
       <div className="min-h-[calc(100vh-94px)]">
-        <Header withSorting={false} />
+        <Header forLandingPage={false} />
         <div dir="rtl" className="my-[24px] flex justify-center items-center gap-[24px]">
           <p className="rounded-[36px] px-[24px] py-[6px] bg-white text-[24px] font-bold text-[#828282] shadow-[0_4px_12px_rgba(0,0,0,0.1)]">
             {reciter.name}

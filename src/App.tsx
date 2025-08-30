@@ -6,12 +6,12 @@ import Footer from "./components/Footer/Footer";
 
 export default function App() {
   const [activeSortOption, setActiveSortOption] = useState("أبجدي");
-  const [searchQuery, setSearchQuery] = useState("");
+  const [reciterSearchQuery, setReciterSearchQuery] = useState("");
 
   return (
-    <AppContext.Provider value={{ activeSortOption, setActiveSortOption, searchQuery, setSearchQuery }}>
+    <AppContext.Provider value={{ activeSortOption, setActiveSortOption, reciterSearchQuery, setReciterSearchQuery }}>
       <div className="min-h-[calc(100vh-94px)]">
-        <Header withSorting={true} />
+        <Header forLandingPage={true} />
         <RecitersList />
       </div>
       <Footer />

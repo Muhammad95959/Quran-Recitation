@@ -4,19 +4,28 @@ import kaabaIcon from "/icon-kaaba.svg";
 import mosqueIcon from "/icon-mosque.svg";
 import type Reciter from "../../interfaces/Reciter";
 import { SURAS } from "../../constants";
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import ReciterContext from "../../context/ReciterContext";
 
 export default function SurasList(props: { reciter: Reciter }) {
   const { reciter } = props;
-  const { setCurrentSura } = useContext(ReciterContext);
+  const { suraSearchQuery, setCurrentSura } = useContext(ReciterContext);
+  const surasArray = reciter.suras.split(",").map((sura) => +sura);
+
+  const filteredSuras: number[] = useMemo(() => {
+    return suraSearchQuery.trim() !== ""
+      ? surasArray.filter(
+          (suraNum) => SURAS[+suraNum].name.includes(suraSearchQuery) || suraNum.toString().includes(suraSearchQuery),
+        )
+      : surasArray;
+  }, [suraSearchQuery, surasArray]);
 
   return (
     <div
       dir="rtl"
       className="max-w-[1440px] mx-auto px-[24px] grid grid-cols-[repeat(auto-fill,minmax(360px,1fr))] gap-[24px] mb-[24px]"
     >
-      {reciter.suras.split(",").map((suraNum) => {
+      {filteredSuras.map((suraNum) => {
         const sura = SURAS[+suraNum];
         return (
           <div

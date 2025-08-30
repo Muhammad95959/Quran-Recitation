@@ -76,8 +76,3 @@ body {
   }
 }
 
-.svg-grey {
-  filter: brightness(0) saturate(100%) invert(89%) sepia(0%) saturate(836%) hue-rotate(235deg) brightness(96%)
-    contrast(85%);
-}
-

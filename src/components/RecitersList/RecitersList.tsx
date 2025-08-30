@@ -10,7 +10,7 @@ import type Reciter from "../../interfaces/Reciter";
 export default function RecitersList() {
   const [loading, setLoading] = useState(true);
   const [reciters, setReciters] = useState<Reciter[]>([]);
-  const { activeSortOption, searchQuery } = useContext(AppContext);
+  const { activeSortOption, reciterSearchQuery } = useContext(AppContext);
   const favorites: Record<number, string> = JSON.parse(window.localStorage.getItem("favorites") || "{}");
 
   useEffect(() => {
@@ -31,7 +31,14 @@ export default function RecitersList() {
 
   const sortedReciters = useMemo(() => {
     const filteredReciters =
-      searchQuery.trim() !== "" ? reciters.filter((reciter) => reciter.name.includes(searchQuery)) : reciters;
+      reciterSearchQuery.trim() !== ""
+        ? reciters.filter(
+            (reciter) =>
+              reciter.name.includes(reciterSearchQuery) ||
+              reciter.rewaya.includes(reciterSearchQuery) ||
+              reciter.count.toString().includes(reciterSearchQuery),
+          )
+        : reciters;
     switch (activeSortOption) {
       case "أبجدي":
         return filteredReciters.sort((a, b) => a.name.localeCompare(b.name, "ar"));
@@ -42,7 +49,7 @@ export default function RecitersList() {
       default:
         return filteredReciters;
     }
-  }, [activeSortOption, reciters, searchQuery]);
+  }, [activeSortOption, reciters, reciterSearchQuery]);
 
   return (
     <div

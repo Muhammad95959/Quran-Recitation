@@ -3,19 +3,22 @@ import logo from "/logo.svg";
 import searchIcon from "/icon-search.svg";
 import { useContext, useEffect, useState } from "react";
 import AppContext from "../../context/AppContext";
+import ReciterContext from "../../context/ReciterContext";
 
-export default function Header(props: { withSorting: boolean }) {
-  const { activeSortOption, setActiveSortOption, setSearchQuery } = useContext(AppContext);
+export default function Header(props: { forLandingPage: boolean }) {
+  const { activeSortOption, setActiveSortOption, setReciterSearchQuery } = useContext(AppContext);
+  const { setSuraSearchQuery } = useContext(ReciterContext);
   const [inputValue, setInputValue] = useState("");
   const sortOptions = ["أبجدي", "عدد السور", "الرواية"];
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setSearchQuery(inputValue);
+      if (props.forLandingPage) setReciterSearchQuery(inputValue);
+      else setSuraSearchQuery(inputValue);
     }, 500);
 
     return () => clearTimeout(timer);
-  }, [inputValue, setSearchQuery]);
+  }, [inputValue, props.forLandingPage, setReciterSearchQuery, setSuraSearchQuery]);
 
   function onChangeHandler(e: React.ChangeEvent<HTMLInputElement>) {
     setInputValue(e.target.value);
@@ -40,7 +43,7 @@ export default function Header(props: { withSorting: boolean }) {
           <img src={searchIcon} alt="Search Icon" />
         </div>
       </div>
-      {props.withSorting && (
+      {props.forLandingPage && (
         <div className="flex justify-center items-center gap-[8px] my-[24px]">
           <p className="text-white font-bold text-[18px] shrink-0">ترتيب حسب :</p>
           <div className="flex justify-center items-center gap-[8px]">
