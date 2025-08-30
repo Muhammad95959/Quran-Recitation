@@ -27,7 +27,7 @@ export default function SurasList(props: { reciter: IReciter }) {
   return (
     <div
       dir="rtl"
-      className="max-w-[1440px] mx-auto px-[24px] grid grid-cols-[repeat(auto-fill,minmax(360px,1fr))] gap-[24px] mb-[24px]"
+      className="max-w-[1440px] mx-auto px-[12px] sm:px-[24px] grid grid-cols-[repeat(auto-fill,minmax(360px,1fr))] gap-[24px] mb-[24px]"
     >
       {filteredSuras.map((suraNum) => {
         const sura = SURAS[+suraNum];
@@ -35,14 +35,14 @@ export default function SurasList(props: { reciter: IReciter }) {
           <div
             key={suraNum}
             tabIndex={0}
-            className="cursor-pointer p-[16px] bg-white rounded-[12px] flex justify-between items-center gap-[16px] shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.35)]"
+            className="cursor-pointer p-[16px] bg-white rounded-[12px] flex flex-wrap justify-center sm:justify-between items-center gap-[16px] shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.35)]"
             onClick={() => setCurrentSura(+suraNum)}
           >
-            <div className="relative">
-              <img className="w-[56px]" src={starIcon} alt="Star Icon" />
-              <p className="absolute top-1/2 left-1/2 -translate-1/2 font-semibold">{suraNum}</p>
-            </div>
-            <p className="font-['Amiri'] flex-shrink-0 text-[20px]">{sura.name}</p>
+              <div className="relative">
+                <img className="w-[56px]" src={starIcon} alt="Star Icon" />
+                <p className="absolute top-1/2 left-1/2 -translate-1/2 font-semibold">{suraNum}</p>
+              </div>
+              <p className="font-['Amiri'] flex-shrink-0 text-[20px]">{sura.name}</p>
             <div>
               <div className="flex items-center gap-4 px-[16px]">
                 <div className="bg-[#F2F2F2] flex items-center gap-2 px-[8px] py-[5px] rounded-[6px] w-fit flex-shrink-0">

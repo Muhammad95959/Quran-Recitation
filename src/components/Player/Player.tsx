@@ -110,7 +110,7 @@ export default function Player(props: { reciter: IReciter }) {
   return (
     <div
       dir="rtl"
-      className="h-[100px] bg-[#32B7C5] sticky bottom-0 flex items-center justify-center gap-[48px] px-[48px] shadow-[0_-2px_12px_rgba(0,0,0,0.2)]"
+      className="py-[10px] min-h-[100px] bg-[#32B7C5] sticky bottom-0 flex flex-wrap flex-col sm:flex-row items-center justify-center gap-[20px] lg:gap-[48px] px-[12px] shadow-[0_-2px_12px_rgba(0,0,0,0.2)]"
     >
       <audio
         src={currentSuraAudio}
@@ -121,7 +121,7 @@ export default function Player(props: { reciter: IReciter }) {
         onPause={() => setIsPlaying(false)}
         onEnded={handleOnAudioEnd}
       ></audio>
-      <p className="text-white text-[20px] font-['Amiri'] font-bold w-[70px]">{SURAS[currentSura!].name}</p>
+      <p className="text-white text-[20px] font-['Amiri'] font-bold lg:w-[70px] relative top-[3px]">{SURAS[currentSura!].name}</p>
       <div className="left flex gap-[12px] items-center justify-center">
         <img
           src={prevIcon}
@@ -142,7 +142,7 @@ export default function Player(props: { reciter: IReciter }) {
           onClick={playNext}
         />
       </div>
-      <div className="center flex items-center justify-center gap-[24px]">
+      <div className="center flex items-center justify-center gap-[10px] lg:gap-[24px]">
         <div className="flex items-center justify-center gap-[8px]">
           <p className="text-[10px] text-white w-[40px] text-center">{getCurrentAudioTimeFormatted()}</p>
           <input
@@ -175,7 +175,7 @@ export default function Player(props: { reciter: IReciter }) {
           )}
         </div>
       </div>
-      <div className="right flex items-center justify-center gap-[24px]">
+      <div className="right flex items-center justify-center gap-[10px] lg:gap-[24px]">
         <img src={soundIcon} alt="Sound Icon" className="scale-x-[-1]" />
         <input
           type="range"

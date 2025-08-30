@@ -27,7 +27,7 @@ export default function Header(props: { forLandingPage: boolean }) {
   return (
     <header dir="rtl">
       <img
-        className="w-full lg:h-auto h-[30vh] absolute top-0 right-0 left-0 -z-1"
+        className="w-full lg:h-auto h-[33vh] absolute top-0 right-0 left-0 -z-1"
         src={background}
         alt="Header Background"
       />
