@@ -5,11 +5,11 @@ import kaabaIcon from "/icon-kaaba.svg";
 import bookIcon from "/icon-book.svg";
 import AppContext from "../../context/AppContext";
 import { Link } from "react-router-dom";
-import type Reciter from "../../interfaces/Reciter";
+import type IReciter from "../../interfaces/IReciter";
 
 export default function RecitersList() {
   const [loading, setLoading] = useState(true);
-  const [reciters, setReciters] = useState<Reciter[]>([]);
+  const [reciters, setReciters] = useState<IReciter[]>([]);
   const { activeSortOption, reciterSearchQuery } = useContext(AppContext);
   const favorites: Record<number, string> = JSON.parse(window.localStorage.getItem("favorites") || "{}");
 

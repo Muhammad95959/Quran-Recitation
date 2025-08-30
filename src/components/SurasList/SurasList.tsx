@@ -2,12 +2,12 @@ import starIcon from "/icon-star.svg";
 import bookIcon from "/icon-book.svg";
 import kaabaIcon from "/icon-kaaba.svg";
 import mosqueIcon from "/icon-mosque.svg";
-import type Reciter from "../../interfaces/Reciter";
+import type IReciter from "../../interfaces/IReciter";
 import { SURAS } from "../../constants";
 import { useContext, useMemo } from "react";
 import ReciterContext from "../../context/ReciterContext";
 
-export default function SurasList(props: { reciter: Reciter }) {
+export default function SurasList(props: { reciter: IReciter }) {
   const { reciter } = props;
   const { suraSearchQuery, setCurrentSura } = useContext(ReciterContext);
   const surasArray = reciter.suras.split(",").map((sura) => +sura);

@@ -1,4 +1,4 @@
-export default interface Reciter  {
+export default interface IReciter  {
   id: string;
   name: string;
   Server: string;

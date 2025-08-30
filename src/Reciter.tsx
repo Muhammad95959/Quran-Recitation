@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import Header from "./components/Header/Header";
 import SurasList from "./components/SurasList/SurasList";
-import type IReciter from "./interfaces/Reciter";
+import type IReciter from "./interfaces/IReciter";
 import { useEffect, useState } from "react";
 import heartIcon from "/icon-heart.svg";
 import filledHeartIcon from "/icon-heart-filled.svg";

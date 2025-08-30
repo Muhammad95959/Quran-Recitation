@@ -6,11 +6,11 @@ import prevIcon from "/icon-prev.svg";
 import randomIcon from "/icon-random.svg";
 import repeatIcon from "/icon-repeat.svg";
 import soundIcon from "/icon-sound.svg";
-import type Reciter from "../../interfaces/Reciter";
+import type IReciter from "../../interfaces/IReciter";
 import ReciterContext from "../../context/ReciterContext";
 import { SURAS } from "../../constants";
 
-export default function Player(props: { reciter: Reciter }) {
+export default function Player(props: { reciter: IReciter }) {
   const [repeat, setRepeat] = useState(0);
   const [random, setRandom] = useState(false);
   const surasArray = props.reciter.suras.split(",").map((s) => +s);
@@ -86,6 +86,11 @@ export default function Player(props: { reciter: Reciter }) {
       .padStart(2, "0")}`;
   }
 
+  function handleOnAudioEnd() {
+    setIsPlaying(false);
+    // TODO: handle repeat and random logic
+  }
+
   return (
     <div
       dir="rtl"
@@ -98,7 +103,7 @@ export default function Player(props: { reciter: Reciter }) {
         onLoadedMetadata={handleLoadedMetadata}
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
-        onEnded={() => setIsPlaying(false)}
+        onEnded={handleOnAudioEnd}
       ></audio>
       <p className="text-white text-[20px] font-['Amiri'] font-bold w-[70px]">{SURAS[currentSura!].name}</p>
       <div className="left flex gap-[12px] items-center justify-center">
@@ -145,12 +150,7 @@ export default function Player(props: { reciter: Reciter }) {
             src={repeatIcon}
             alt="Repeat Icon"
             className={`cursor-pointer ${!(repeat > 0) ? "opacity-[50%]" : ""}`}
-            onClick={() =>
-              setRepeat((r) => {
-                if (r > 5) return 0;
-                return r + 1;
-              })
-            }
+            onClick={() => setRepeat((r) => (r + 1) % 7)}
           />
           {repeat > 0 && (
             <div className="absolute -top-2 -right-2 bg-white text-[#32B7C5] text-[10px] font-bold w-[16px] h-[16px] rounded-[50%] flex items-center justify-center">
