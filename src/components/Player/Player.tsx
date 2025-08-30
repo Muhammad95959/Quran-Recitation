@@ -36,8 +36,8 @@ export default function Player(props: { reciter: IReciter }) {
   }, [isPlaying]);
 
   useEffect(() => {
-    setIsPlaying(false);
-  }, [currentSura, setIsPlaying]);
+    if (repeat === 0 && !random) setIsPlaying(false);
+  }, [currentSura, random, repeat, setIsPlaying]);
 
   useEffect(() => {
     if (currentSura) setCurrentSuraIndex(surasArray.indexOf(currentSura));
@@ -87,8 +87,24 @@ export default function Player(props: { reciter: IReciter }) {
   }
 
   function handleOnAudioEnd() {
-    setIsPlaying(false);
-    // TODO: handle repeat and random logic
+    if (repeat === 0 && !random) {
+      setIsPlaying(false);
+      return;
+    }
+    if (repeat > 0) {
+      if (repeat < 6) setRepeat((r) => r - 1);
+      audioRef.current!.currentTime = 0;
+      setIsPlaying(true);
+      return;
+    }
+    if (random) {
+      const nextSura =
+        surasArray.length > 1
+          ? surasArray[Math.floor(Math.random() * (surasArray.length - 1))]
+          : currentSura || surasArray[0];
+      setCurrentSura(nextSura);
+      setIsPlaying(true);
+    }
   }
 
   return (
