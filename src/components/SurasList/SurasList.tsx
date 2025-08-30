@@ -15,7 +15,11 @@ export default function SurasList(props: { reciter: Reciter }) {
   const filteredSuras: number[] = useMemo(() => {
     return suraSearchQuery.trim() !== ""
       ? surasArray.filter(
-          (suraNum) => SURAS[+suraNum].name.includes(suraSearchQuery) || suraNum.toString().includes(suraSearchQuery),
+          (suraNum) =>
+            SURAS[+suraNum].name.includes(suraSearchQuery) ||
+            SURAS[+suraNum].type.includes(suraSearchQuery) ||
+            SURAS[+suraNum].verces.toString().includes(suraSearchQuery) ||
+            suraNum.toString().includes(suraSearchQuery),
         )
       : surasArray;
   }, [suraSearchQuery, surasArray]);
