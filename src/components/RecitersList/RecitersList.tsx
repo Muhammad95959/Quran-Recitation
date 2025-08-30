@@ -1,7 +1,7 @@
 import { useContext, useEffect, useMemo, useState } from "react";
 import heartIcon from "/icon-heart.svg";
 import filledHeartIcon from "/icon-heart-filled.svg";
-import kaabaIcon from "/icon-kaaba.svg";
+import markIcon from "/icon-mark.svg";
 import bookIcon from "/icon-book.svg";
 import AppContext from "../../context/AppContext";
 import { Link } from "react-router-dom";
@@ -72,7 +72,7 @@ export default function RecitersList() {
                   <div className="w-[7px] h-[7px] bg-[#828282] rounded-[50%] flex-shrink-0"></div>
                   <div className="bg-[#F2F2F2] flex items-center gap-2 px-[8px] py-[5px] rounded-[6px]">
                     <span className="text-8 text-[#828282] text-center">{reciter.rewaya}</span>
-                    <img className="w-[14px]" src={kaabaIcon} alt="Kaaba Icon" />
+                    <img className="w-[14px]" src={markIcon} alt="Kaaba Icon" />
                   </div>
                   <img
                     className="w-[20px]"
