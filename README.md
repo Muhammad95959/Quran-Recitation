@@ -1,1 +1,1 @@
-# [Quran-Reciters](https://muhammadhefzey-quran-reciters.netlify.app)
+# [Quran-Recitation](https://muhammadhefzey-quran-recitation.netlify.app)
