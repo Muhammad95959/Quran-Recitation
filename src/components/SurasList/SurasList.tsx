@@ -35,7 +35,7 @@ export default function SurasList(props: { reciter: IReciter }) {
           <div
             key={suraNum}
             tabIndex={0}
-            className="cursor-pointer p-[16px] bg-white rounded-[12px] flex flex-wrap justify-center sm:justify-between items-center gap-[16px] shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.35)]"
+            className="outline-none cursor-pointer p-[16px] bg-white rounded-[12px] flex flex-wrap justify-center sm:justify-between items-center gap-[16px] shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.35)]"
             onClick={() => setCurrentSura(+suraNum)}
           >
               <div className="relative">

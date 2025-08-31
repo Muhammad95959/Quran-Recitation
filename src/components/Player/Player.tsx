@@ -124,18 +124,21 @@ export default function Player(props: { reciter: IReciter }) {
       <p className="text-white text-[20px] font-['Amiri'] font-bold lg:w-[70px] relative top-[3px]">{SURAS[currentSura!].name}</p>
       <div className="left flex gap-[12px] items-center justify-center">
         <img
+          tabIndex={0}
           src={prevIcon}
           alt="Previous Icon"
           className={`${currentSuraIndex > 0 ? "cursor-pointer" : "opacity-[50%] pointer-events-none"}`}
           onClick={playPrev}
         />
         <img
+          tabIndex={0}
           src={isPlaying ? pauseIcon : playIcon}
           alt="Play Icon"
           className="w-[48px] cursor-pointer"
           onClick={() => setIsPlaying(!isPlaying)}
         />
         <img
+          tabIndex={0}
           src={nextIcon}
           alt="Next Icon"
           className={`${currentSuraIndex < surasArray.length - 1 ? "cursor-pointer" : "opacity-[50%] pointer-events-none"}`}
@@ -156,6 +159,7 @@ export default function Player(props: { reciter: IReciter }) {
           <p className="text-[10px] text-white w-[40px] text-center">{getAudioDurationFormatted()}</p>
         </div>
         <img
+          tabIndex={0}
           src={randomIcon}
           alt="Random Icon"
           className={`cursor-pointer scale-x-[-1] ${!random ? "opacity-[50%]" : ""}`}
@@ -163,6 +167,7 @@ export default function Player(props: { reciter: IReciter }) {
         />
         <div className="relative">
           <img
+            tabIndex={0}
             src={repeatIcon}
             alt="Repeat Icon"
             className={`cursor-pointer ${!(repeat > 0) ? "opacity-[50%]" : ""}`}

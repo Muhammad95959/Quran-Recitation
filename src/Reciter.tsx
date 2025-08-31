@@ -53,7 +53,8 @@ export default function Reciter() {
             onClick={toggleFavorite}
           >
             <img
-              className="w-[24px] relative top-[2px]"
+              tabIndex={0}
+              className="w-[24px] relative top-[2px] outline-none"
               src={favorite ? filledHeartIcon : heartIcon}
               alt="Heart Icon"
             />
