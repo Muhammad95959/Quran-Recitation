@@ -54,7 +54,7 @@ export default function RecitersList() {
   return (
     <div
       dir="rtl"
-      className="max-w-[1440px] mx-auto px-[24px] grid grid-cols-[repeat(auto-fill,minmax(360px,1fr))] gap-[24px] mb-[24px]"
+      className="max-w-[1440px] mx-auto px-[12px] sm:px-[24px] grid grid-cols-[1fr] sm:grid-cols-[repeat(auto-fill,minmax(360px,1fr))] gap-[24px] mb-[24px]"
     >
       {loading && <div className="loader"></div>}
       {sortedReciters.map((reciter) => {
@@ -66,7 +66,7 @@ export default function RecitersList() {
                 <div className="flex items-center gap-4 px-[16px]">
                   <div className="bg-[#F2F2F2] flex items-center gap-2 px-[8px] py-[5px] rounded-[6px] w-fit flex-shrink-0">
                     <span className="text-4 text-[#828282]">{reciter.count}</span>
-                    <span className="text-8 text-[#828282]">سورة</span>
+                    <span className="text-8 text-[#828282]">{reciter.count <= 10 ? "سور" : "سورة"}</span>
                     <img className="w-[14px]" src={bookIcon} alt="Kaaba Icon" />
                   </div>
                   <div className="w-[7px] h-[7px] bg-[#828282] rounded-[50%] flex-shrink-0"></div>

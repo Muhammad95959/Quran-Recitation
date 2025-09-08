@@ -27,7 +27,7 @@ export default function SurasList(props: { reciter: IReciter }) {
   return (
     <div
       dir="rtl"
-      className="max-w-[1440px] mx-auto px-[12px] sm:px-[24px] grid grid-cols-[repeat(auto-fill,minmax(360px,1fr))] gap-[24px] mb-[24px]"
+      className="max-w-[1440px] mx-auto px-[12px] sm:px-[24px] grid grid-cols-[1fr] sm:grid-cols-[repeat(auto-fill,minmax(360px,1fr))] gap-[24px] mb-[24px]"
     >
       {filteredSuras.map((suraNum) => {
         const sura = SURAS[+suraNum];

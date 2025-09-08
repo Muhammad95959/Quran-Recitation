@@ -44,8 +44,8 @@ export default function Header(props: { forLandingPage: boolean }) {
         </div>
       </div>
       {props.forLandingPage && (
-        <div className="flex justify-center items-center gap-[8px] my-[24px]">
-          <p className="text-white font-bold text-[18px] shrink-0">ترتيب حسب :</p>
+        <div className="flex justify-center items-center gap-[8px] my-[24px] px-[8px]">
+          <p className="text-white font-bold text-[18px] shrink-0 text-shadow-[0_0_5px_rgba(0,0,0,0.9)]">ترتيب حسب :</p>
           <div className="flex justify-center items-center gap-[8px]">
             {sortOptions.map((option, index) => {
               return (
